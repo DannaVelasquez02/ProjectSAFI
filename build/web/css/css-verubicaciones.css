@@ -1,0 +1,47 @@
+/* 
+    Created on : 6 oct. 2023, 07:36:32
+    Author     : OMAR OROZCO
+*/
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#body_box{    
+    width: 150vh;
+    height: auto;
+    margin-top: 10vh;
+}
+button{
+    font-weight: bolder;
+}
+#btnsBox{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 30vh;
+}
+#acciones{
+    display: flex;
+    flex-direction: row;
+}
+#acciones a{
+    margin-right: 1vh;
+}
+a{
+    text-decoration: none;
+}
+#logo{
+    width: 12rem;
+    height: 4rem;     
+
+}
+#paginaselec{
+    background-color: #B3B5B8;
+}
+#titulo{   
+    display: flex;    
+    justify-content: center;
+    align-items: center;
+}
+
