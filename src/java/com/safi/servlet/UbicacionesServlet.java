@@ -11,7 +11,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+import Modelos.Ubicaciones;
+import Modelos.UbicacionesDAO;
 /**
  *
  * @author ADSO
@@ -19,9 +20,10 @@ import javax.servlet.http.HttpServletResponse;
 public class UbicacionesServlet extends HttpServlet {  
     String verubicaciones = "vistas/ubicaciones/verubicaciones.jsp";
     
+    UbicacionesDAO ubDAO = new UbicacionesDAO();
+    Ubicaciones ub = new Ubicaciones();
     
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
@@ -46,15 +48,31 @@ public class UbicacionesServlet extends HttpServlet {
         // se define la acccion
         String accion = request.getParameter("accion");
         
-        
+        //si la accion es igual a verubicaciones entonces dirigimos la pagina a la vista en donde se muestran las respectivas ubicaciones
         if (accion.equalsIgnoreCase("verubicaciones")){
             acceso = verubicaciones;
         }
+        //
+        else if(accion.equalsIgnoreCase("agrubicacion")){            
+            //asignamos los valores escritos por el usuario en los input a un objeto tipo String
+            String txtubi_codigo = request.getParameter("txtubi_codigo");
+            String txtubi_descripcion = request.getParameter("txtubi_descripcion");
+            String txtubi_centro_costo = request.getParameter("txtubi_centro_costo");                        
+            // enviamos los valores a el set de la clase POJO de ubicaciones
+            ub.setUbi_codigo(Integer.parseInt(txtubi_codigo));
+            ub.setUbi_descripcion(txtubi_descripcion);
+            ub.setUbi_centro_costo(txtubi_centro_costo);            
+            //enviamos los datos a el DAO
+            ubDAO.CrearUbicaciones(ub);            
+            //asignamos la vista a la que queremos redirigir
+            acceso = verubicaciones;            
+            
+        }
+        
         
         
         //redirigimos a la vista seleccionada
-//        RequestDispatcher vista=request.getRequestDispatcher(acceso);
-//        vista.forward(request, response);
+        //RequestDispatcher vista=request.getRequestDispatcher(acceso); vista.forward(request, response);
         response.sendRedirect(acceso);
         
     }
