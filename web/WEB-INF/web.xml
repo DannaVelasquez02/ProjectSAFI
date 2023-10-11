@@ -8,6 +8,10 @@
         <servlet-name>UbicacionesServlet</servlet-name>
         <servlet-class>com.safi.servlet.UbicacionesServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ActivosFijosServlet</servlet-name>
+        <servlet-class>com.safi.servlet.ActivosFijosServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
@@ -15,6 +19,10 @@
     <servlet-mapping>
         <servlet-name>UbicacionesServlet</servlet-name>
         <url-pattern>/UbicacionesServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ActivosFijosServlet</servlet-name>
+        <url-pattern>/activosFijosServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
