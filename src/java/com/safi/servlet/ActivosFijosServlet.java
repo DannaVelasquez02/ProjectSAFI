@@ -9,6 +9,7 @@ import Modelos.ActivosFijosDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,28 +18,13 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author ADSO
  */
+@WebServlet(name = "ActivosFijosServlet", urlPatterns = {"/activosFijosServlet"})
 public class ActivosFijosServlet extends HttpServlet {
 
     String verActivosFijos = "vistas/activosFijos/veractivosFijos.jsp";
 
     ActivosFijos acfi = new ActivosFijos();
-    ActivosFijosDAO acfiDAO = new ActivosFijosDAO();
-
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try ( PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ActivosFijosServlet</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ActivosFijosServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
-    }
+    ActivosFijosDAO acfiDAO = new ActivosFijosDAO();  
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -70,44 +56,19 @@ public class ActivosFijosServlet extends HttpServlet {
             
             // enviamos los valores a el set de la clase POJO de ubicaciones
                       
-            acfi.setAct_codigo(Integer.parseInt(txtact_codigo));
-            System.out.println(txtact_codigo);
-            
-            acfi.setAct_estado(Integer.parseInt(txtact_estado));
-            System.out.println(txtact_estado);
-            
-            acfi.setAct_marca(txtact_marca);
-            System.out.println(txtact_marca);
-            
+            acfi.setAct_codigo(Integer.parseInt(txtact_codigo));                        
+            acfi.setAct_estado(Integer.parseInt(txtact_estado));                        
+            acfi.setAct_marca(txtact_marca);           
             acfi.setAct_modelo(txtact_modelo);
-            System.out.println(txtact_modelo);
-            
             acfi.setAct_no_serie(Integer.parseInt(txtact_no_serie));
-            System.out.println(txtact_no_serie);
-            
             acfi.setAct_fecha_adqu(txtact_fecha_adqu);
-            System.out.println(txtact_fecha_adqu);
-            
             acfi.setAct_precio_adqu(Integer.parseInt(txtact_precio_adqu));
-            System.out.println(txtact_precio_adqu);
-            
             acfi.setAct_vida_util(Integer.parseInt(txtact_vida_util));
-            System.out.println(txtact_vida_util);
-            
-            acfi.setAct_meses_depreciados(Integer.parseInt(txtact_meses_depreciados));
-            System.out.println(txtact_meses_depreciados);
-            
+            acfi.setAct_meses_depreciados(Integer.parseInt(txtact_meses_depreciados));  
             acfi.setAct_descripcion(txtact_descripcion);
-            System.out.println(txtact_descripcion);
-            
             acfi.setTblfabricantes_id(Integer.parseInt(txttblfabricantes_id));
-            System.out.println(txttblfabricantes_id);
-            
             acfi.setTbltiposactivosfijos_idtbltiposactivosfijos(Integer.parseInt(txttbltiposactivosfijos_id));
-            System.out.println(txttbltiposactivosfijos_id);
-            
-            acfi.setTblubicacion_id(Integer.parseInt(txttblubicacion_id));                       
-            System.out.println(txttblubicacion_id);
+            acfi.setTblubicacion_id(Integer.parseInt(txttblubicacion_id));                                  
             
             
             //enviamos los datos a el DAO
@@ -125,7 +86,7 @@ public class ActivosFijosServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        processRequest(request, response);
+        
     }
 
     @Override

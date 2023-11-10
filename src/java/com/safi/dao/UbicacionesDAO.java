@@ -2,9 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Modelos;
+package com.safi.dao;
 
-import Controlador.Conexion;
+import com.safi.controlador.Conexion;
+import com.safi.pojo.Ubicaciones;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -24,10 +25,11 @@ public class UbicacionesDAO {
         try {
             Conexion con = new Conexion();
             Connection connection = con.AbrirConexion();
-            PreparedStatement ps = connection.prepareStatement("call bd_safi.MostrarUbicaciones()");
+            PreparedStatement ps = connection.prepareStatement("call bdsafi.sp_MostrarUbicaciones()");
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Ubicaciones ub = new Ubicaciones();
+                ub.setId(rs.getInt("id"));
                 ub.setUbi_codigo(rs.getInt("ubi_codigo"));
                 ub.setUbi_descripcion(rs.getString("ubi_descripcion"));
                 ub.setUbi_centro_costo(rs.getString("ubi_centro_costo"));
@@ -49,6 +51,18 @@ public class UbicacionesDAO {
         } catch (SQLException e) {
             System.out.println(e);
         }
+        return status;
+    }
+    public int ActualizarUbicacion(Ubicaciones ub){
+        int status = 0;
+        try {
+            Conexion con = new Conexion();
+            Connection connection = con.AbrirConexion();
+            PreparedStatement ps = connection.prepareStatement("call bd_safi.sp_ActualizarUbicacion('"+ub.getUbi_codigo()+"', '"+ub.getUbi_descripcion()+"' , '"+ub.getUbi_centro_costo()+"' , '"+ub.getId()+"' )");          
+            status = ps.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }        
         return status;
     }
     

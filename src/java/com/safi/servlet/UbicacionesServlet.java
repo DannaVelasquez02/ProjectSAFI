@@ -11,12 +11,14 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import Modelos.Ubicaciones;
-import Modelos.UbicacionesDAO;
+import com.safi.pojo.Ubicaciones;
+import com.safi.dao.UbicacionesDAO;
+import javax.servlet.annotation.WebServlet;
 /**
  *
  * @author ADSO
  */
+@WebServlet(name = "UbicacionesServlet", urlPatterns = {"/UbicacionesServlet"})
 public class UbicacionesServlet extends HttpServlet {  
     String verubicaciones = "vistas/ubicaciones/verubicaciones.jsp";
     
@@ -67,6 +69,21 @@ public class UbicacionesServlet extends HttpServlet {
             //asignamos la vista a la que queremos redirigir
             acceso = verubicaciones;            
             
+        }else if (accion.equalsIgnoreCase("actubicacion")){
+            //asignamos los valores escritos por el usuario en los input a un objeto tipo String
+            String txtubi_codigo = request.getParameter("txtubi_codigoEdit");
+            String txtubi_descripcion = request.getParameter("txtubi_descripcionEdit");
+            String txtubi_centro_costo = request.getParameter("txtubi_centro_costoEdit");    
+            int txtubi_id = Integer.parseInt(request.getParameter("txtubi_idEdit"));
+            // enviamos los valores a el set de la clase POJO de ubicaciones
+            ub.setUbi_codigo(Integer.parseInt(txtubi_codigo));
+            ub.setUbi_descripcion(txtubi_descripcion);
+            ub.setUbi_centro_costo(txtubi_centro_costo);   
+            ub.setId(txtubi_id);
+            //enviamos los datos a el DAO
+            ubDAO.ActualizarUbicacion(ub);            
+            //asignamos la vista a la que queremos redirigir
+            acceso = verubicaciones;    
         }
         
         
