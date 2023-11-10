@@ -1,4 +1,4 @@
-package Controlador;
+package com.safi.controlador;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -12,7 +12,7 @@ public class Conexion {
         if (conn == null) {
             try {
                 Class.forName("com.mysql.jdbc.Driver");
-                conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bd_safi?serverTimezone=UTC", "root", "2556229");
+                conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bdsafi?serverTimezone=UTC", "root", "2556229");
             } catch (ClassNotFoundException e) {
                 System.out.println("error: " + e.getMessage());
             }
@@ -21,4 +21,4 @@ public class Conexion {
     }
     public void cerrarConexion() {
     }
-} 
+}

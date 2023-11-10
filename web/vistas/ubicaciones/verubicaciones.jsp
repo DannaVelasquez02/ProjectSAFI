@@ -111,8 +111,8 @@
                             <td><%= ubi.getUbi_descripcion()%></td>
                             <td><%= ubi.getUbi_centro_costo()%></td>                        
                             <td id="acciones">                           
-                                <a class="btn btn-warning edit-btn" data-toggle="modal" data-target="#EditarUbicacion" data-ubi_codigo="<%= ubi.getUbi_codigo()%>" data-ubi_descrip="<%= ubi.getUbi_descripcion()%>" data-ubi_centrocosto="<%= ubi.getUbi_centro_costo()%>"><i class="fa-solid fa-pen-to-square"></i></a>
-                                <a href="prueba.jsp" class="btn btn-danger"><i class="fa-regular fa-trash-can"></i></a>                    
+                                <a class="btn btn-warning edit-btn" data-toggle="modal" data-target="#EditarUbicacion" data-ubi_codigo="<%= ubi.getUbi_codigo()%>" data-ubi_descrip="<%= ubi.getUbi_descripcion()%>" data-ubi_centrocosto="<%= ubi.getUbi_centro_costo()%>" data-ubi_id="<%= ubi.getId()%>"><i class="fa-solid fa-pen-to-square"></i></a>
+                                <a href="#" class="btn btn-danger"><i class="fa-regular fa-trash-can"></i></a>                    
                             </td>               
                         </tr>
                         <%}%>
@@ -164,18 +164,18 @@
                             <div class="modal-body">
 
                                 <form action="../../UbicacionesServlet">
-
+                                    <input type="hidden" name="txtubi_idEdit" id="ubi_id">
                                     <div class="form-group">
                                         <label for="editCodigo">Código</label>
-                                        <input type="number" class="form-control" name="txtubi_codigo" id="ubi_codigo" required/>
+                                        <input type="number" class="form-control" name="txtubi_codigoEdit" id="ubi_codigo" required/>
                                     </div>
                                     <div class="form-group">
                                         <label for="editFamilia">Descripción</label>
-                                        <input type="text" class="form-control" name="txtubi_descripcion" id="ubi_descrip" required/>
+                                        <input type="text" class="form-control" name="txtubi_descripcionEdit" id="ubi_descrip" required/>
                                     </div>
                                     <div class="form-group">
                                         <label for="editUbicacion">Centro de costo</label>
-                                        <input type="text" class="form-control" name="txtubi_centro_costo" id="ubi_centrocosto" required/>     
+                                        <input type="text" class="form-control" name="txtubi_centro_costoEdit" id="ubi_centrocosto" required/>     
                                     </div>                            
 
                                     <div class="modal-footer">
@@ -219,10 +219,12 @@
                     var ubi_codigo = $(this).data('ubi_codigo');
                     var ubi_descrip = $(this).data('ubi_descrip');
                     var ubi_centrocosto = $(this).data('ubi_centrocosto');
+                    var ubi_id = $(this).data('ubi_id');
 
                     $('#ubi_codigo').val(ubi_codigo);
                     $('#ubi_descrip').val(ubi_descrip);
                     $('#ubi_centrocosto').val(ubi_centrocosto);
+                    $('#ubi_id').val(ubi_id);
 
                 });              
             });
