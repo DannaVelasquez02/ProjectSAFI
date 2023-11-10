@@ -46,7 +46,7 @@ public class UbicacionesDAO {
         try {
             Conexion con = new Conexion();
             Connection connection = con.AbrirConexion();
-            PreparedStatement ps = connection.prepareStatement("call bd_safi.crearUbicacion('" + ub.getUbi_codigo()+ "','" + ub.getUbi_descripcion()+"','"+ub.getUbi_centro_costo()+"')");
+            PreparedStatement ps = connection.prepareStatement("call bdsafi.sp_CrearUbicacion('" + ub.getUbi_codigo()+ "','" + ub.getUbi_descripcion()+"','"+ub.getUbi_centro_costo()+"')");
             status = ps.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e);
@@ -58,7 +58,7 @@ public class UbicacionesDAO {
         try {
             Conexion con = new Conexion();
             Connection connection = con.AbrirConexion();
-            PreparedStatement ps = connection.prepareStatement("call bd_safi.sp_ActualizarUbicacion('"+ub.getUbi_codigo()+"', '"+ub.getUbi_descripcion()+"' , '"+ub.getUbi_centro_costo()+"' , '"+ub.getId()+"' )");          
+            PreparedStatement ps = connection.prepareStatement("call bdsafi.sp_ActualizarUbicacion('"+ub.getUbi_codigo()+"', '"+ub.getUbi_descripcion()+"' , '"+ub.getUbi_centro_costo()+"' , '"+ub.getId()+"' )");          
             status = ps.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e);

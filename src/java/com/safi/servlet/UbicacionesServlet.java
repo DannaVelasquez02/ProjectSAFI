@@ -20,7 +20,7 @@ import javax.servlet.annotation.WebServlet;
  */
 @WebServlet(name = "UbicacionesServlet", urlPatterns = {"/UbicacionesServlet"})
 public class UbicacionesServlet extends HttpServlet {  
-    String verubicaciones = "vistas/ubicaciones/verubicaciones.jsp";
+    String verubicaciones = "vistas/ubicaciones/ubicaciones.jsp";
     
     UbicacionesDAO ubDAO = new UbicacionesDAO();
     Ubicaciones ub = new Ubicaciones();
