@@ -9,17 +9,18 @@ package com.safi.pojo;
  * @author ADSO
  */
 public class ActivosFijos {
-    int id, act_codigo, act_estado,  act_precio_adqu, act_vida_util, act_meses_depreciados,  tblfabricantes_id, tbltiposactivosfijos_id, tblubicacion_id;
-    String act_marca, act_modelo,act_fecha_adqu,act_descripcion,  act_no_serie;
 
-    public int getId() {
-        return id;
+    int act_id, act_codigo, act_estado, act_precio_adqu, act_vida_util, act_meses_depreciados, tblfabricantes_id, tbltiposactivosfijos_id, tblubicacion_id;
+    String act_marca, act_modelo, act_fecha_adqu, act_descripcion, act_no_serie;
+
+    public int getAct_id() {
+        return act_id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
+    public void setAct_id(int act_id) {
+        this.act_id = act_id;
+    }   
+    
     public int getAct_codigo() {
         return act_codigo;
     }
@@ -43,8 +44,6 @@ public class ActivosFijos {
     public void setAct_no_serie(String act_no_serie) {
         this.act_no_serie = act_no_serie;
     }
-
-    
 
     public int getAct_precio_adqu() {
         return act_precio_adqu;
@@ -125,6 +124,5 @@ public class ActivosFijos {
     public void setAct_descripcion(String act_descripcion) {
         this.act_descripcion = act_descripcion;
     }
-    
-}
 
+}

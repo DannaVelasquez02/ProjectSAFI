@@ -4,6 +4,8 @@
  */
 package com.safi.servlet;
 
+import com.google.gson.Gson;
+import com.safi.controlador.Conexion;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -13,6 +15,10 @@ import com.safi.dao.ActivosFijosDAO;
 import com.safi.dao.EquiposComputoDAO;
 import com.safi.pojo.ActivosFijos;
 import com.safi.pojo.EquiposComputo;
+import java.io.PrintWriter;
+import java.util.List;
+import javax.json.Json;
+import javax.json.JsonObjectBuilder;
 
 /**
  *
@@ -20,7 +26,7 @@ import com.safi.pojo.EquiposComputo;
  */
 public class EquiposServlet extends HttpServlet {
 
- String verequiposcomputo = "vistas/activosFijos/equiposcomputo.jsp";
+    String verequiposcomputo = "vistas/activosFijos/equiposcomputo.jsp";
 
     ActivosFijos acf = new ActivosFijos();
     EquiposComputo equ = new EquiposComputo();
@@ -29,9 +35,46 @@ public class EquiposServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        
-    }
+        String acceso = "";
+        // se define la acccion
+        String accion = request.getParameter("accion");
 
+        if (accion.equalsIgnoreCase("EditarEquipo")) {
+            // Obtén el valor del parámetro de la solicitud
+            String stringValue = request.getParameter("equ_id");
+
+            // Verifica si la cadena no es nula ni está vacía antes de intentar la conversión
+            if (stringValue != null && !stringValue.isEmpty()) {
+                try {
+                    // Intenta convertir la cadena a un número
+                    int intValue = Integer.parseInt(stringValue);
+
+                    // Realiza la lógica para obtener los datos del DAO utilizando el ID
+                    
+                    List<EquiposComputo> EquiposList = equDAO.EditarEquiposComputo(intValue);
+
+                    // Configura la respuesta
+                    response.setContentType("application/json");
+                    response.setCharacterEncoding("UTF-8");
+
+                    // Convierte la lista de equipos a formato JSON
+                    Gson gson = new Gson();
+                    String equiposJson = gson.toJson(EquiposList);
+
+                    try (PrintWriter out = response.getWriter()) {
+                        out.print(equiposJson);
+                    }
+
+                } catch (NumberFormatException e) {
+                    // Maneja la excepción si la conversión no es exitosa
+                    response.setStatus(HttpServletResponse.SC_BAD_REQUEST); // 400 Bad Request
+                }
+            } else {
+                // La cadena es nula o vacía, manejar este caso según tus necesidades
+                response.setStatus(HttpServletResponse.SC_BAD_REQUEST); // 400 Bad Request
+            }
+        }
+    }
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -41,7 +84,7 @@ public class EquiposServlet extends HttpServlet {
         String accion = request.getParameter("accion");
 
         //si la accion es igual a verequiposcomputo entonces dirigimos la pagina a la vista en donde se muestran las respectivas ubicaciones
-        if (accion.equalsIgnoreCase("verequiposcomputo")) {                    
+        if (accion.equalsIgnoreCase("verequiposcomputo")) {
             acceso = verequiposcomputo;
         } // si la accion es igual a agregarequipocomputo hacemos la funcion de agregar
         else if (accion.equalsIgnoreCase("agrequipocomputo")) {
@@ -59,8 +102,6 @@ public class EquiposServlet extends HttpServlet {
             String txtact_descripcion = request.getParameter("txtact_descripcion");
             int txttblfabricantes_id = Integer.parseInt(request.getParameter("txttblfabricantes_id"));
             int txttblubicacion_id = Integer.parseInt(request.getParameter("txttblubicacion_id"));
-            
-            
 
             //tomamos los valores para equipo de computo
             String txtequ_procesador = request.getParameter("txtequ_procesador");
@@ -84,23 +125,23 @@ public class EquiposServlet extends HttpServlet {
             acf.setAct_descripcion(txtact_descripcion);
             acf.setTblfabricantes_id(txttblfabricantes_id);
             acf.setTblubicacion_id(txttblubicacion_id);
-            
+
             acf.setTbltiposactivosfijos_id(1);
 
             //ejecutamos el metodo del DAO
-            int act_id = acfDAO.CrearActivoFijoID(acf); 
+            int act_id = acfDAO.CrearActivoFijoID(acf);
             //enviamos los datos a los respectivos Sets de equipos computo
-            equ.setEqu_procesador(txtequ_procesador);            
-            equ.setEqu_ram(txtequ_ram);            
-            equ.setEqu_discoduro_marca(txtequ_discoduro_marca);           
-            equ.setEqu_tajeta_video(txtequ_tajeta_video);            
-            equ.setEqu_puertos(txtequ_puertos);            
-            equ.setEqu_tipo_equipo(txtequ_tipo_equipo);            
-            equ.setEqu_capacidad_almacenamiento(txtequ_capacidad_almacenamiento);            
-            equ.setTblactivosfijos_id(act_id);                                    
+            equ.setEqu_procesador(txtequ_procesador);
+            equ.setEqu_ram(txtequ_ram);
+            equ.setEqu_discoduro_marca(txtequ_discoduro_marca);
+            equ.setEqu_tajeta_video(txtequ_tajeta_video);
+            equ.setEqu_puertos(txtequ_puertos);
+            equ.setEqu_tipo_equipo(txtequ_tipo_equipo);
+            equ.setEqu_capacidad_almacenamiento(txtequ_capacidad_almacenamiento);
+            equ.setTblactivosfijos_id(act_id);
             equDAO.CrearEquipoComputo(equ);
-            
-            acceso= verequiposcomputo;
+
+            acceso = verequiposcomputo;
 
         }
         response.sendRedirect(acceso);
