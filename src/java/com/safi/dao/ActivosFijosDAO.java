@@ -64,7 +64,7 @@ public class ActivosFijosDAO {
                 //declaramos el pojo de los activos fijos en un objeto
                 ActivosFijos acfi = new ActivosFijos();
                 //vamos añadiendo al objeto los datos de la base de datos
-                acfi.setId(rs.getInt("id"));
+                acfi.setAct_id(rs.getInt("id"));
                 acfi.setAct_codigo(rs.getInt("act_codigo"));
                 acfi.setAct_estado(rs.getInt("act_estado"));
                 acfi.setAct_marca(rs.getString("act_marca"));

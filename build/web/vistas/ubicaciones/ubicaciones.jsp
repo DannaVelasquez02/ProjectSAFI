@@ -145,7 +145,9 @@
                                             <td><%= ubi.getUbi_descripcion()%></td>
                                             <td><%= ubi.getUbi_centro_costo()%></td>                        
                                             <td id="acciones">                           
-                                                <a class="btn btn-warning edit-btn" data-bs-toggle="modal" data-bs-target="#EditarUbicacion" data-ubi_codigo="<%= ubi.getUbi_codigo()%>" data-ubi_descrip="<%= ubi.getUbi_descripcion()%>" data-ubi_centrocosto="<%= ubi.getUbi_centro_costo()%>" data-ubi_id="<%= ubi.getId()%>"><i class="fa-solid fa-pen-to-square"></i></a>
+<!--                                                <a class="btn btn-warning edit-btn" data-bs-toggle="modal" data-bs-target="#EditarUbicacion" data-ubi_codigo="<%= ubi.getUbi_codigo()%>" data-ubi_descrip="<%= ubi.getUbi_descripcion()%>" data-ubi_centrocosto="<%= ubi.getUbi_centro_costo()%>" data-ubi_id="<%= ubi.getId()%>"><i class="fa-solid fa-pen-to-square"></i></a>-->
+                                                <a class="btn btn-warning editbutton" data-bs-toggle="modal" data-bs-target="#EditarUbicacion" data-ubi_id="<%= ubi.getId()%>"><i class="fa-solid fa-pen-to-square"></i></a>
+
                                                 <a href="#" class="btn btn-danger"><i class="fa-regular fa-trash-can"></i></a>                    
                                             </td>               
                                         </tr>
@@ -191,7 +193,7 @@
                                     <div class="modal-dialog modal-dialog-centered">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Agregar Equipo de Computo.</h1>
+                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Editar Equipo de Computo.</h1>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
@@ -251,8 +253,12 @@
         <script src="../../js/js-menu.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>        
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
-        <script src="../../js/datatables-simple-demo.js"></script>
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="../../js/datatables-simple-demo.js"></script>        
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>  
         <script src="../../js/script-ubicaciones.js"></script>
+
+            
+
+        
     </body>
 </html>

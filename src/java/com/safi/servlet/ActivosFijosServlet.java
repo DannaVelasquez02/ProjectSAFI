@@ -4,10 +4,9 @@
  */
 package com.safi.servlet;
 
-import Modelos.ActivosFijos;
-import Modelos.ActivosFijosDAO;
+import com.safi.dao.ActivosFijosDAO;
+import com.safi.pojo.ActivosFijos;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -39,40 +38,8 @@ public class ActivosFijosServlet extends HttpServlet {
             acceso = verActivosFijos;
         }
         else if(accion.equalsIgnoreCase("agractivofijo")){            
-            //asignamos los valores escritos por el usuario en los input a un objeto tipo String
-            String txtact_codigo = request.getParameter("txtact_codigo");
-            String txtact_estado = request.getParameter("txtact_estado");
-            String txtact_marca = request.getParameter("txtact_marca");              
-            String txtact_modelo = request.getParameter("txtact_modelo");  
-            String txtact_no_serie = request.getParameter("txtact_no_serie");  
-            String txtact_fecha_adqu = request.getParameter("txtact_fecha_adqu");  
-            String txtact_precio_adqu = request.getParameter("txtact_precio_adqu");  
-            String txtact_vida_util = request.getParameter("txtact_vida_util");  
-            String txtact_meses_depreciados = request.getParameter("txtact_meses_depreciados");  
-            String txtact_descripcion = request.getParameter("txtact_descripcion");  
-            String txttblfabricantes_id = request.getParameter("txttblfabricantes_id");  
-            String txttbltiposactivosfijos_id = request.getParameter("txttbltiposactivosfijos_id");  
-            String txttblubicacion_id = request.getParameter("txttblubicacion_id");  
             
-            // enviamos los valores a el set de la clase POJO de ubicaciones
-                      
-            acfi.setAct_codigo(Integer.parseInt(txtact_codigo));                        
-            acfi.setAct_estado(Integer.parseInt(txtact_estado));                        
-            acfi.setAct_marca(txtact_marca);           
-            acfi.setAct_modelo(txtact_modelo);
-            acfi.setAct_no_serie(Integer.parseInt(txtact_no_serie));
-            acfi.setAct_fecha_adqu(txtact_fecha_adqu);
-            acfi.setAct_precio_adqu(Integer.parseInt(txtact_precio_adqu));
-            acfi.setAct_vida_util(Integer.parseInt(txtact_vida_util));
-            acfi.setAct_meses_depreciados(Integer.parseInt(txtact_meses_depreciados));  
-            acfi.setAct_descripcion(txtact_descripcion);
-            acfi.setTblfabricantes_id(Integer.parseInt(txttblfabricantes_id));
-            acfi.setTbltiposactivosfijos_idtbltiposactivosfijos(Integer.parseInt(txttbltiposactivosfijos_id));
-            acfi.setTblubicacion_id(Integer.parseInt(txttblubicacion_id));                                  
-            
-            
-            //enviamos los datos a el DAO
-            acfiDAO.CrearActivoFijo(acfi);            
+                     
             //asignamos la vista a la que queremos redirigir
             acceso = verActivosFijos;            
             
