@@ -24,6 +24,9 @@
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
         <link href="../../css/css-menu.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+        
+
 
 
     </head>
@@ -174,136 +177,136 @@
 
                                             <form action="../../equiposServlet" method="POST">
                                                 <div class="row">
-                                                    <div class="col-md-6 mb-3">
-                                                        <label>Código</label>
-                                                        <input type="number" class="form-control" name="txtact_codigo" id="inputform" required/>
+                                                        <div class="col-md-6 mb-3">
+                                                            <label>Código</label>
+                                                            <input type="number" class="form-control" name="txtact_codigo" id="inputform" required/>
+                                                        </div>
+                                                        <div class="col-md-6 mb-3">
+                                                            <label>Estado</label>
+                                                            <select class="form-select" aria-label="Default select example" name="txtact_estado" required>
+                                                                <option selected value="1">Activo</option>
+                                                                <option value="2">Inactivo</option>
+                                                            </select>
+                                                        </div>
                                                     </div>
-                                                    <div class="col-md-6 mb-3">
-                                                        <label>Estado</label>
-                                                        <select class="form-select" aria-label="Default select example" name="txtact_estado" required>
-                                                            <option selected value="1">Activo</option>
-                                                            <option value="2">Inactivo</option>
-                                                        </select>
+                                                    <div class="row">
+                                                        <div class="col-md-6 mb-3">
+                                                            <label>Marca</label>
+                                                            <input type="text" class="form-control" name="txtact_marca" required/>     
+                                                        </div>   
+                                                        <div class="col-md-6 mb-3">
+                                                            <label>Modelo</label>
+                                                            <input type="text" class="form-control" name="txtact_modelo" required/>     
+                                                        </div> 
                                                     </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-6 mb-3">
-                                                        <label>Marca</label>
-                                                        <input type="text" class="form-control" name="txtact_marca" required/>     
-                                                    </div>   
-                                                    <div class="col-md-6 mb-3">
-                                                        <label>Modelo</label>
-                                                        <input type="text" class="form-control" name="txtact_modelo" required/>     
-                                                    </div> 
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-6 mb-3">
-                                                        <label>N° Serie</label>
-                                                        <input type="text" class="form-control" name="txtact_no_serie" required/>     
-                                                    </div> 
-                                                    <div class="col-md-6 mb-3">
-                                                        <label>Fecha de adquisición</label>
-                                                        <input type="date" class="form-control" name="txtact_fecha_adqu" required/>     
+                                                    <div class="row">
+                                                        <div class="col-md-6 mb-3">
+                                                            <label>N° Serie</label>
+                                                            <input type="text" class="form-control" name="txtact_no_serie" required/>     
+                                                        </div> 
+                                                        <div class="col-md-6 mb-3">
+                                                            <label>Fecha de adquisición</label>
+                                                            <input type="date" class="form-control" name="txtact_fecha_adqu" required/>     
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-6 mb-3">
-                                                        <label>Precio de adquisición</label>
-                                                        <input type="number" class="form-control" name="txtact_precio_adqu" required/>     
-                                                    </div> 
-                                                    <div class="col-md-6 mb-3">
-                                                        <label>Vida Util (n° de meses)</label>
-                                                        <input type="number" class="form-control" name="txtact_vida_util" required/>     
-                                                    </div> 
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-6 mb-3">
-                                                        <label>Meses Depreciados (n° de meses)</label>
-                                                        <input type="number" class="form-control" name="txtact_meses_depreciados" required/>     
-                                                    </div> 
-                                                    <div class="col-md-6 mb-3">
-                                                        <label>Descripción</label>
-                                                        <input type="text" class="form-control" name="txtact_descripcion" required/>                                         
-                                                    </div> 
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-6 mb-3">
-                                                        <label>Fabricante</label>
-
-                                                        <select class="form-select" aria-label="Default select example" name="txttblfabricantes_id" required>
-                                                            <option selected>Seleccione el Fabricante</option>
-                                                            <%
-                                                                FabricantesDAO fabDAO = new FabricantesDAO();
-                                                                List<Fabricantes> listfab = fabDAO.MostrarFabricantes();
-                                                                request.setAttribute("listfab", listfab);
-                                                            %>
-                                                            <c:forEach items="${listfab}" var="fab">
-
-                                                                <option value="${fab.id}">${fab.fab_nombre}</option>
-
-                                                            </c:forEach>
-                                                        </select>
-
-
-
-                                                    </div>                             
-                                                    <div class="col-md-6 mb-3">
-                                                        <label>Ubicación</label>
-                                                        <select class="form-select" aria-label="Default select example" name="txttblubicacion_id" required>
-                                                            <option selected>Seleccione la ubicación</option>
-                                                            <%
-                                                                UbicacionesDAO ubiDAO = new UbicacionesDAO();
-                                                                List<Ubicaciones> listubi = ubiDAO.MostrarUbicaciones();
-                                                                request.setAttribute("listubi", listubi);
-                                                            %>
-                                                            <c:forEach items="${listubi}" var="ubi">
-
-                                                                <option value="${ubi.id}">${ubi.ubi_descripcion}</option>
-
-                                                            </c:forEach>
-                                                        </select>                                     
+                                                    <div class="row">
+                                                        <div class="col-md-6 mb-3">
+                                                            <label>Precio de adquisición</label>
+                                                            <input type="number" class="form-control" name="txtact_precio_adqu" required/>     
+                                                        </div> 
+                                                        <div class="col-md-6 mb-3">
+                                                            <label>Vida Util (n° de meses)</label>
+                                                            <input type="number" class="form-control" name="txtact_vida_util" required/>     
+                                                        </div> 
                                                     </div>
-                                                </div>
+                                                    <div class="row">
+                                                        <div class="col-md-6 mb-3">
+                                                            <label>Meses Depreciados (n° de meses)</label>
+                                                            <input type="number" class="form-control" name="txtact_meses_depreciados" required/>     
+                                                        </div> 
+                                                        <div class="col-md-6 mb-3">
+                                                            <label>Descripción</label>
+                                                            <input type="text" class="form-control" name="txtact_descripcion" required/>                                         
+                                                        </div> 
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-6 mb-3">
+                                                            <label>Fabricante</label>
 
-                                                <div class="row">
-                                                    <div class="col-md-6 mb-3">
-                                                        <label>Marca de Procesador</label>
-                                                        <input type="text" class="form-control" name="txtequ_procesador" required/>     
-                                                    </div> 
-                                                    <div class="col-md-6 mb-3">
-                                                        <label>Capacidad de RAM (N° de GB)</label>
-                                                        <input type="text" class="form-control" name="txtequ_ram" required/>     
-                                                    </div> 
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-6 mb-3">
-                                                        <label>Marca Disco Duro</label>
-                                                        <input type="text" class="form-control" name="txtequ_discoduro_marca" required/>     
-                                                    </div> 
-                                                    <div class="col-md-6 mb-3">
-                                                        <label>Marca de Tarjeta de Video</label>
-                                                        <input type="text" class="form-control" name="txtequ_tajeta_video" required/>     
-                                                    </div> 
-                                                </div>
+                                                            <select class="form-select" aria-label="Default select example" name="txttblfabricantes_id" required>
+                                                                <option selected>Seleccione el Fabricante</option>
+                                                                <%
+                                                                    FabricantesDAO fabDAO = new FabricantesDAO();
+                                                                    List<Fabricantes> listfab = fabDAO.MostrarFabricantes();
+                                                                    request.setAttribute("listfab", listfab);
+                                                                %>
+                                                                <c:forEach items="${listfab}" var="fab">
 
-                                                <div class="row">
-                                                    <div class="col-md-4 mb-3">
-                                                        <label>Numero de Puertos</label>
-                                                        <input type="number" class="form-control" name="txtequ_puertos" required/>     
-                                                    </div> 
-                                                    <div class="col-md-4 mb-3">
-                                                        <label>Tipo de Equipo</label>
-                                                        <select class="form-select" aria-label="Default select example" name="txtact_estado" required>
-                                                            <option selected value="Todo en uno">Todo en Uno</option>
-                                                            <option value="CPU">CPU</option>
-                                                            <option value="Portatil">Portatil</option>
+                                                                    <option value="${fab.id}">${fab.fab_nombre}</option>
 
-                                                        </select>
-                                                    </div>  
-                                                    <div class="col-md-4 mb-3">
-                                                        <label>Capacidad de Almacenamiento (N° de gb)</label>
-                                                        <input type="number" class="form-control" name="txtequ_capacidad_almacenamiento" required/>     
-                                                    </div>  
+                                                                </c:forEach>
+                                                            </select>
+
+
+
+                                                        </div>                             
+                                                        <div class="col-md-6 mb-3">
+                                                            <label>Ubicación</label>
+                                                            <select class="form-select" aria-label="Default select example" name="txttblubicacion_id" required>
+                                                                <option selected>Seleccione la ubicación</option>
+                                                                <%
+                                                                    UbicacionesDAO ubiDAO = new UbicacionesDAO();
+                                                                    List<Ubicaciones> listubi = ubiDAO.MostrarUbicaciones();
+                                                                    request.setAttribute("listubi", listubi);
+                                                                %>
+                                                                <c:forEach items="${listubi}" var="ubi">
+
+                                                                    <option value="${ubi.id}">${ubi.ubi_descripcion}</option>
+
+                                                                </c:forEach>
+                                                            </select>                                     
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="col-md-6 mb-3">
+                                                            <label>Marca de Procesador</label>
+                                                            <input type="text" class="form-control" name="txtequ_procesador" required/>     
+                                                        </div> 
+                                                        <div class="col-md-6 mb-3">
+                                                            <label>Capacidad de RAM (N° de GB)</label>
+                                                            <input type="text" class="form-control" name="txtequ_ram" required/>     
+                                                        </div> 
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-6 mb-3">
+                                                            <label>Marca Disco Duro</label>
+                                                            <input type="text" class="form-control" name="txtequ_discoduro_marca" required/>     
+                                                        </div> 
+                                                        <div class="col-md-6 mb-3">
+                                                            <label>Marca de Tarjeta de Video</label>
+                                                            <input type="text" class="form-control" name="txtequ_tajeta_video" required/>     
+                                                        </div> 
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="col-md-4 mb-3">
+                                                            <label>Numero de Puertos</label>
+                                                            <input type="number" class="form-control" name="txtequ_puertos" required/>     
+                                                        </div> 
+                                                        <div class="col-md-4 mb-3">
+                                                            <label>Tipo de Equipo</label>
+                                                            <select class="form-select" aria-label="Default select example" name="txtact_estado" required>
+                                                                <option selected value="Todo en uno">Todo en Uno</option>
+                                                                <option value="CPU">CPU</option>
+                                                                <option value="Portatil">Portatil</option>
+
+                                                            </select>
+                                                        </div>  
+                                                        <div class="col-md-4 mb-3">
+                                                            <label>Capacidad de Almacenamiento (N° de gb)</label>
+                                                            <input type="number" class="form-control" name="txtequ_capacidad_almacenamiento" required/>     
+                                                        </div>  
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="" class="btn btn-dark" data-dismiss="modal">Cancelar</button>
@@ -497,9 +500,11 @@
         <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
         <script src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
         <script src="../../js/js-equipos-computo.js"></script>
-        
+        <script src="../../js/validacionMC.js"></script>
+
 
 
 
     </body>
 </html>
+    

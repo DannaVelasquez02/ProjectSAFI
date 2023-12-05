@@ -24,7 +24,7 @@ $(document).ready(function () {
                     $('#adqufechaedit').val(equipo.activosfijos.act_fecha_adqu);                   
                     
                     // Manejar la respuesta
-                    $('#codigoedit').val(equipo.activosfijos.act_modelo);
+                    $('#codigoedit').val(equipo.activosfijos.act_modelo);                               
 
                     
                     
