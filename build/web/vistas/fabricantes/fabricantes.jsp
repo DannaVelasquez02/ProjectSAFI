@@ -15,11 +15,13 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="Omar Orozco" />
-        <title>Inicio</title>
+        <title>Proveedores</title>
         <!-- Links de Dasboard e iconos -->
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
         <link href="../../css/css-menu.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Script de api de reCAPtcha -->
+        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
 
     </head>
@@ -53,7 +55,7 @@
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">Core</div>
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="../inicio.html">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Dashboard
                             </a>
@@ -65,15 +67,16 @@
                             </a>
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="activosFijos/equiposcomputo.jsp">Equipos Computo</a>
+                                    <a class="nav-link" href="../activosFijos/equiposcomputo.jsp">Equipos Computo</a>
                                     <a class="nav-link" href="#">Maquinaria</a>
+                                    <a class="nav-link" href="../activosFijos/muebles.jsp">Muebles</a>
                                 </nav>
                             </div>
-                            <a class="nav-link" href="ubicaciones/ubicaciones.jsp">
+                            <a class="nav-link" href="../ubicaciones/ubicaciones.jsp">
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-location-dot"></i></i></div>
                                 Ubicaciones
                             </a>    
-                            <a class="nav-link" href="fabricantes/fabricantes.jsp">
+                            <a class="nav-link" href="../fabricantes/fabricantes.jsp">
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-cart-shopping"></i></div>
                                 Proveedores
                             </a>
@@ -186,8 +189,9 @@
                                                     </div>                            
 
                                                     <div class="modal-footer">
+                                                        <div class="g-recaptcha" data-sitekey="6LfUVR8pAAAAAMyE2Igd5THThjc7PmMLSsZsjlVP"  data-callback="enableSubmitButton" data-expired-callback="recaptchaExpiredCallback"></div>
                                                         <button type="" class="btn btn-dark" data-dismiss="modal">Cancelar</button>
-                                                        <button type="submit" class="btn btn-success" name="accion" value="AgregarFabricante">Crear Ubicación</button>                                
+                                                        <button type="submit" class="AggButton btn btn-success" name="accion" value="AgregarFabricante" disabled/>Agregar Proveedor</button>                                
                                                     </div>
                                                 </form>
                                         </div>
@@ -242,5 +246,6 @@
         <script src="../../js/datatables-simple-demo.js"></script>
         <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
         <script src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+        <script src="../../js/js-fabricantes.js"></script>
     </body>
 </html>

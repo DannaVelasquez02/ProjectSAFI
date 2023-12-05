@@ -22,6 +22,12 @@ public class FabricantesServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        
+
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String acceso = "";
         // se define la acccion
         String accion = request.getParameter("accion");
@@ -40,14 +46,9 @@ public class FabricantesServlet extends HttpServlet {
             fab.setFab_telefono(txtfab_telefono);
             fab.setFab_observaciones(txtfab_descripcion);
             
-            fabDAO.
+            fabDAO.CrearUbicaciones(fab);
+            response.sendRedirect("vistas/fabricantes/fabricantes.jsp");
         }
-
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
     }
 
 }

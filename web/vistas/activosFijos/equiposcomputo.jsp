@@ -20,7 +20,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="Omar Orozco" />
-        <title>Inicio</title>
+        <title>Equipos Computo</title>
+        <!-- Script de api de reCAPtcha -->
+        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+        
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
         <link href="../../css/css-menu.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
@@ -71,6 +74,7 @@
                                 <nav class="sb-sidenav-menu-nested nav">
                                     <a class="nav-link" href="#">Equipos Computo</a>
                                     <a class="nav-link" href="#">Maquinaria</a>
+                                    <a class="nav-link" href="muebles.jsp">Muebles</a>
                                 </nav>
                             </div>
                             <a class="nav-link" href="../ubicaciones/ubicaciones.jsp">
@@ -306,8 +310,9 @@
                                                     </div>  
                                                 </div>
                                                 <div class="modal-footer">
+                                                    <div class="g-recaptcha" data-sitekey="6LfUVR8pAAAAAMyE2Igd5THThjc7PmMLSsZsjlVP"  data-callback="enableSubmitButton" data-expired-callback="recaptchaExpiredCallback"></div>
                                                     <button type="" class="btn btn-dark" data-dismiss="modal">Cancelar</button>
-                                                    <button type="submit" class="btn btn-success" name="accion" value="agrequipocomputo">Agregar</button>   
+                                                    <button type="submit" class="AggButton btn btn-success" name="accion" value="agrequipocomputo" disabled/>Agregar</button>   
 
                                                 </div>
                                             </form>

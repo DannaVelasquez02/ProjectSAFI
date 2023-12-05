@@ -51,6 +51,7 @@ public class EquiposServlet extends HttpServlet {
 
                     // Realiza la lógica para obtener los datos del DAO utilizando el ID
                     List<EquiposComputo> EquiposList = equDAO.EditarEquiposComputo(intValue);
+                    System.out.println(EquiposList);
 
                     // Configura la respuesta
                     response.setContentType("application/json");
@@ -85,7 +86,7 @@ public class EquiposServlet extends HttpServlet {
 
         //si la accion es igual a verequiposcomputo entonces dirigimos la pagina a la vista en donde se muestran las respectivas ubicaciones
         if (accion.equalsIgnoreCase("verequiposcomputo")) {
-            acceso = verequiposcomputo;
+            response.sendRedirect("vistas/activosFijos/equiposcomputo.jsp");
         } // si la accion es igual a agregarequipocomputo hacemos la funcion de agregar
         else if (accion.equalsIgnoreCase("agrequipocomputo")) {
 
@@ -141,7 +142,7 @@ public class EquiposServlet extends HttpServlet {
             equ.setTblactivosfijos_id(act_id);
             equDAO.CrearEquipoComputo(equ);
 
-            acceso = verequiposcomputo;
+            response.sendRedirect("vistas/activosFijos/equiposcomputo.jsp");
 
         } else if (accion.equalsIgnoreCase("ActualizarEquipos")) {
 
@@ -206,10 +207,11 @@ public class EquiposServlet extends HttpServlet {
             //ejecutamos el metodo DAO de Equipos de computo            
             equDAO.ActualizarEquipoComputo(equ);
 
-            acceso = verequiposcomputo;
+            
+            response.sendRedirect("vistas/activosFijos/equiposcomputo.jsp");
 
         }
 
-        response.sendRedirect(acceso);
+        
     }
 }
